@@ -3,7 +3,7 @@ import jkengine.JKPoint;
 import jkEngine.JKSprite;
 import nme.display.DisplayObjectContainer;
 import com.eclecticdesignstudio.motion.Actuate;
-
+import nme.Lib;
 /**
  * ...
  * @author Karlo
@@ -53,8 +53,8 @@ class Jewel extends JKSprite
 		super.update();
 		
 		if ( !isMoving && checkIfCanFall() )
-		{
-			trace("i can fall");
+		{			
+			Lib.trace(" i am falling");
 			applyGravity();
 		}
 	}
@@ -111,5 +111,9 @@ class Jewel extends JKSprite
 	function moveTo( coordinate : JKPoint )
 	{
 		Actuate.tween(this, movementSpeed, { x : coordinate.x, y : coordinate.y } );			// We tween to position
+		
+		parentTile = parentTile.bottomNeighbor;
+		parentTile.bottomNeighbor.residentJewel = this;
+		parentTile.residentJewel = null;
 	}
 }
