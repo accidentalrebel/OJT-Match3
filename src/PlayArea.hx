@@ -107,9 +107,9 @@ class PlayArea extends JK2DArray
 		for ( element in array )				// We loop through each element
 		{
 			if ( element.residentJewel == null )				// If the element is empty, "N" is displayed
-				toDisplay += "Null";
+				toDisplay += "[  Null ], " ;
 			else
-				toDisplay += element.objectName;				// If element is not empty, "1" is displayed
+				toDisplay += element.objectName + ", ";				// If element is not empty, "1" is displayed
 			
 			if ( xElementCount >= pitch )		// This checks whether we should go to the next line
 			{
