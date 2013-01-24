@@ -31,12 +31,8 @@ class PlayArea extends JK2DArray
 		populate();
 		getNeighbors();
 		
-		colSpawners[3].spawnJewels(5);
-						
-		var theTile : Tile = get(3, 4);
-		theTile.spawnResident();
-		theTile = get(3, 3);
-		theTile.spawnResident();
+		colSpawners[3].spawnJewels(8);
+		colSpawners[4].spawnJewels(8);
 	}	
 	
 	/********************************************************************************
