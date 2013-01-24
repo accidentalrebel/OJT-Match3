@@ -96,7 +96,7 @@ class PlayArea extends JK2DArray
 	 * TILE SELECTION
 	 * ******************************************************************************/
 	public function selectTile( clickedTile : Tile )
-	{
+	{		
 		if ( selectedTile == null )					// If there are no tiles that are currently selected
 		{			
 			moveMarkerTo(clickedTile);				// We move the marker to positoin
@@ -117,8 +117,8 @@ class PlayArea extends JK2DArray
 					|| clickedTile == selectedTile.rightNeighbor 
 					|| clickedTile == selectedTile.bottomNeighbor 
 					|| clickedTile == selectedTile.leftNeighbor )	// If this tile is left neighbor
-					{
-						clickedTile.residentJewel.switchWith(selectedTile.residentJewel);
+					{						
+						clickedTile.residentJewel.switchWith(selectedTile.residentJewel);						
 						marker.hide();
 						selectedTile = null;
 					}			

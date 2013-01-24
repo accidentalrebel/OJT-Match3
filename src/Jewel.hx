@@ -174,6 +174,7 @@ class Jewel extends JKButton
 	public function clear()
 	{
 		parentTile.residentJewel = null;
+		Registry.game.playArea.colSpawners[xCoord].spawnJewels(1);
 		destroy();
 	}
 }
