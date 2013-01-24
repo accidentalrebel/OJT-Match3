@@ -15,7 +15,7 @@ class JewelSpawner extends Tile
 	{		
 		super(XCoord, YCoord, LayerForTile, LayerForJewel);
 		
-		objectName = "Spawner(" + xCoord + "," + yCoord + ")";
+		objectName = "Spwn(" + xCoord + "," + yCoord + ")";
 	}
 	
 	public function spawnJewels( numToSpawn : Int )

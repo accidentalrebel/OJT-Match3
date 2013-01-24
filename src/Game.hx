@@ -1,6 +1,7 @@
 package ;
 import jkEngine.JKGame;
 import jkEngine.JKSprite;
+import nme.events.Event;
 import nme.Lib;
 /**
  * ...
@@ -18,5 +19,15 @@ class Game extends JKGame
 		super();
 		
 		playArea = new PlayArea();
+	}
+	
+	override private function update(e:Event):Void 
+	{
+		super.update(e);
+		
+		if ( keyboard.checkIfKeyPressed(65) )
+		{
+			playArea.displayAllContent();
+		}
 	}
 }

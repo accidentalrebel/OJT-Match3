@@ -97,6 +97,34 @@ class PlayArea extends JK2DArray
 	}
 	
 	/********************************************************************************
+	 * CONTENT DISPLAY
+	 * ******************************************************************************/
+	override public function displayAllContent():Dynamic 
+	{
+		var xElementCount : Int = 1;
+		var i : Int = 0;
+		var toDisplay : String = "\n";			// We set up the toDisplay string
+		for ( element in array )				// We loop through each element
+		{
+			if ( element.residentJewel == null )				// If the element is empty, "N" is displayed
+				toDisplay += "Null";
+			else
+				toDisplay += element.objectName;				// If element is not empty, "1" is displayed
+			
+			if ( xElementCount >= pitch )		// This checks whether we should go to the next line
+			{
+				xElementCount = 0;				// We reset the xElement count
+				toDisplay += "\n";				// We then add a new line
+			}
+			
+			xElementCount ++;
+			i++;
+		}
+		
+		Lib.trace(toDisplay);						// We display the generated string
+	}
+	
+	/********************************************************************************
 	 * TILE SELECTION
 	 * ******************************************************************************/
 	public function selectTile( clickedTile : Tile )
