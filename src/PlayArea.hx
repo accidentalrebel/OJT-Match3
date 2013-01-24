@@ -129,15 +129,7 @@ class PlayArea extends JK2DArray
 	 * TILE SELECTION
 	 * ******************************************************************************/
 	public function selectTile( clickedTile : Tile )
-	{			
-		//var theTile : Tile = get(3, 3);
-		//theTile.residentJewel.clear();
-		//theTile = get(3, 4);
-		//theTile.residentJewel.clear();
-		//theTile = get(3, 5);
-		//theTile.residentJewel.clear();
-		//trace("left is " + get(3,4).residentJewel);
-		//
+	{	
 		if ( selectedTile == null )					// If there are no tiles that are currently selected
 		{			
 			moveMarkerTo(clickedTile);				// We move the marker to positoin
@@ -179,7 +171,7 @@ class PlayArea extends JK2DArray
 			{
 				Lib.trace("Checking for matches: " + i + ", " + (arrayHeight - 1- j));
 				var theTile : Tile = get(i, arrayHeight - 1 - j);
-				if ( theTile.residentJewel != null )
+				if ( theTile.residentJewel != null && !theTile.residentJewel.isCleared)
 					theTile.checkForMatch();
 				
 				//clearMarked();				
