@@ -63,7 +63,7 @@ class Jewel extends JKButton
 	{
 		super.update();
 		
-		if ( Registry.game.playArea.isClearing )
+		if ( Registry.game.playArea.isClearing || isCleared)
 			return;
 		
 		// Checking if can fall
@@ -146,6 +146,7 @@ class Jewel extends JKButton
 		parentTile.residentJewel = this;							// We assign ourselves to the new parent tile
 		
 		updateMapPosition();
+		Lib.trace(objectName + "moved down to " + xCoord + "," + yCoord );
 	}
 	
 	public function switchWith( jewelToSwitchWith : Jewel )
