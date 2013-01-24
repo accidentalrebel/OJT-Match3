@@ -133,12 +133,13 @@ class Jewel extends JKButton
 	
 	function moveTo( coordinate : JKPoint )
 	{
-		Actuate.tween(this, movementSpeed, { x : coordinate.x, y : coordinate.y } );			// We tween to position		
+		Actuate.tween(this, movementSpeed, { x : coordinate.x, y : coordinate.y } );					// We tween to position		
 		movementTimer.start();
 		
 		parentTile.residentJewel = null;							// We remove our reference from our old parent tile
 		parentTile = parentTile.bottomNeighbor;						// We set our ne parentTile
 		parentTile.residentJewel = this;							// We assign ourselves to the new parent tile
+		
 		xCoord = parentTile.xCoord;
 		yCoord = parentTile.yCoord;
 	}
@@ -147,8 +148,16 @@ class Jewel extends JKButton
 	{
 		var tempX = x;
 		var tempY = y;
-		Actuate.tween(this, movementSpeed, { x : jewelToSwitchWith.x, y : jewelToSwitchWith.y } );			// We tween to position		
-		Actuate.tween(jewelToSwitchWith, movementSpeed, { x : tempX, y : tempY } );			// We tween to position		
+		Actuate.tween(this, movementSpeed, { x : jewelToSwitchWith.x, y : jewelToSwitchWith.y } );		// We tween to position		
+		Actuate.tween(jewelToSwitchWith, movementSpeed, { x : tempX, y : tempY } );						// We tween to position		
+		
+		movementTimer.start();
+		
+		var tempTile : Tile = jewelToSwitchWith.parentTile;
+		jewelToSwitchWith.parentTile = parentTile;
+		parentTile.residentJewel = jewelToSwitchWith;		
+		parentTile = tempTile;
+		parentTile.residentJewel = this;
 	}
 	
 }

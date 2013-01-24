@@ -113,23 +113,15 @@ class PlayArea extends JK2DArray
 			else									// If this is a different tile
 			{
 				// We check if the selected tile is a neighbor
-				if ( clickedTile == selectedTile.topNeighbor )			// If this is a top neighbor
-				{
-					clickedTile.residentJewel.switchWith(selectedTile.residentJewel);
-					trace("clicked the top neighbor");
-				}
-				else if ( clickedTile == selectedTile.rightNeighbor )	// If this tile is right neighbor
-				{
-					trace("Clicked the right neighbor");
-				}
-				else if ( clickedTile == selectedTile.bottomNeighbor )	// If this tile is bottom neighbor
-				{
-					trace("Clicked the bottom neighbor");
-				}
-				else if ( clickedTile == selectedTile.leftNeighbor )	// If this tile is left neighbor
-				{
-					trace("Clicked the left neighbor");
-				}				
+				if ( clickedTile == selectedTile.topNeighbor
+					|| clickedTile == selectedTile.rightNeighbor 
+					|| clickedTile == selectedTile.bottomNeighbor 
+					|| clickedTile == selectedTile.leftNeighbor )	// If this tile is left neighbor
+					{
+						clickedTile.residentJewel.switchWith(selectedTile.residentJewel);
+						marker.hide();
+						selectedTile = null;
+					}			
 			}
 		}
 	}
