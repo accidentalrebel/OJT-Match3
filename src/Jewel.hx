@@ -35,14 +35,13 @@ class Jewel extends JKSprite
 		parentTile = theParent;
 		
 		objectName = "Jewel(" + xCoord + "," + yCoord + ")";
-		trace(objectName + " = " + parentTile.objectName );
 		
 		super(0, 0, theLayer);
 				
 		loadRandomColor();
 		
 		x = xCoord * width;
-		y = yCoord * height;
+		y = yCoord * height;		
 	}
 	
 	override private function update():Dynamic 

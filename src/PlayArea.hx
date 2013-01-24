@@ -14,6 +14,8 @@ class PlayArea extends JK2DArray
 	
 	public function new() 
 	{			
+		Registry.game.playArea = this;
+		
 		layerBG = new JKSprite(this);
 		layerFG = new JKSprite(this);
 		
@@ -23,6 +25,7 @@ class PlayArea extends JK2DArray
 		y = 40;
 		
 		populate();
+		getNeighbors();
 		
 		var theTile : Tile = get(3, 3);
 		theTile.spawnResident();
@@ -38,6 +41,21 @@ class PlayArea extends JK2DArray
 			for ( j in 0...arrayHeight )
 			{
 				set(new Tile(i, j, layerBG, layerFG), i, j);
+			}
+		}
+	}
+	
+	/********************************************************************************
+	 * NEIGHBORS
+	 * ******************************************************************************/
+	function getNeighbors()
+	{
+		for ( i in 0...arrayWidth )
+		{
+			for ( j in 0...arrayHeight )
+			{
+				var theTile : Tile = get(i, j);
+				theTile.getNeighbors();
 			}
 		}
 	}
