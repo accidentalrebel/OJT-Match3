@@ -46,6 +46,8 @@ class Jewel extends JKButton
 		yCoord = YCoord;
 		parentTile = theParent;
 		
+		objectName = "Jewl(" + xCoord + "," + yCoord + ")";
+		
 		super(0, 0, theLayer);
 				
 		loadRandomColor();
