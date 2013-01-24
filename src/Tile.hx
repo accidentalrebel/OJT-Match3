@@ -8,15 +8,16 @@ import nme.display.DisplayObjectContainer;
  
 class Tile extends JKSprite
 {
-	var residentJewel : Jewel;
-	var xCoord : Int;
-	var yCoord : Int;
-	
 	public var topNeighbor : Null<Tile>;
 	public var rightNeighbor : Null<Tile>;
 	public var bottomNeighbor : Null<Tile>;
 	public var leftNeighbor : Null<Tile>;
 	
+	public var residentJewel : Jewel;
+	
+	var xCoord : Int;
+	var yCoord : Int;
+		
 	var layerForJewel : DisplayObjectContainer;
 	
 	public function new(XCoord : Int, YCoord : Int, ?layerForTile : DisplayObjectContainer, ?LayerForJewel : DisplayObjectContainer ) 

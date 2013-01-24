@@ -24,6 +24,7 @@ class Jewel extends JKSprite
 	var yCoord : Int;
 	var currentColor : JewelColor;
 	var parentTile : Tile;
+	var isMoving = false;
 	
 	/********************************************************************************
 	 * MAIN
@@ -48,8 +49,9 @@ class Jewel extends JKSprite
 	{
 		super.update();
 		
-		if ( checkIfCanFall() )
+		if ( !isMoving && checkIfCanFall() )
 		{
+			trace("i can fall");
 			applyGravity();
 		}
 	}
@@ -87,15 +89,18 @@ class Jewel extends JKSprite
 	}	
 	
 	/********************************************************************************
-	 * MOVEMENT
+	 * GRAVITY
 	 * ******************************************************************************/
 	function checkIfCanFall() : Bool
 	{
-		return false;
+		if ( parentTile.bottomNeighbor.residentJewel == null )
+			return true;
+		else
+			return false;
 	}
 	 
 	function applyGravity()
 	{
-		
+		isMoving = true;
 	}
 }
