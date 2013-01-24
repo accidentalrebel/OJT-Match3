@@ -15,8 +15,8 @@ class Tile extends JKSprite
 	
 	public var residentJewel : Jewel;
 	
-	var xCoord : Int;
-	var yCoord : Int;
+	public var xCoord : Int;
+	public var yCoord : Int;
 		
 	var layerForJewel : DisplayObjectContainer;
 	

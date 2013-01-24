@@ -1,9 +1,12 @@
 package ;
 import jkengine.JKPoint;
 import jkEngine.JKSprite;
+import nme.utils.Timer;
+import nme.events.TimerEvent;
 import nme.display.DisplayObjectContainer;
 import com.eclecticdesignstudio.motion.Actuate;
 import nme.Lib;
+
 /**
  * ...
  * @author Karlo
@@ -28,6 +31,7 @@ class Jewel extends JKSprite
 	var parentTile : Tile;
 	var isMoving = false;
 	var movementSpeed : Float = 0.5;
+	var movementTimer : Timer;
 	
 	/********************************************************************************
 	 * MAIN
@@ -45,7 +49,10 @@ class Jewel extends JKSprite
 		loadRandomColor();
 		
 		x = xCoord * width;
-		y = yCoord * height;		
+		y = yCoord * height;
+		
+		movementTimer = new Timer(movementSpeed * 1000, 1);
+		movementTimer.addEventListener(TimerEvent.TIMER_COMPLETE, onMovementFinish);
 	}
 	
 	override private function update():Dynamic 
@@ -92,14 +99,17 @@ class Jewel extends JKSprite
 	}	
 	
 	/********************************************************************************
-	 * GRAVITY
+	 * MOVEMENT / GRAVITY
 	 * ******************************************************************************/
 	function checkIfCanFall() : Bool
 	{
-		if ( parentTile.bottomNeighbor.residentJewel == null )
-			return true;
-		else
+		if ( yCoord >= Registry.game.playArea.arrayHeight - 1 )		// If we are on the bottom of the playArea
 			return false;
+		
+		if ( parentTile.bottomNeighbor.residentJewel != null )		// If there is nothing below			
+			return false;
+			
+		return true;
 	}
 	 
 	function applyGravity()
@@ -110,10 +120,18 @@ class Jewel extends JKSprite
 	
 	function moveTo( coordinate : JKPoint )
 	{
-		Actuate.tween(this, movementSpeed, { x : coordinate.x, y : coordinate.y } );			// We tween to position
-		
-		parentTile = parentTile.bottomNeighbor;
-		parentTile.bottomNeighbor.residentJewel = this;
-		parentTile.residentJewel = null;
+		Actuate.tween(this, movementSpeed, { x : coordinate.x, y : coordinate.y } );			// We tween to position		
+		movementTimer.start();
+	}
+	
+	function onMovementFinish(e : TimerEvent)
+	{
+		isMoving = false;
+				
+		parentTile.residentJewel = null;							// We remove our reference from our old parent tile
+		parentTile = parentTile.bottomNeighbor;						// We set our ne parentTile
+		parentTile.residentJewel = this;							// We assign ourselves to the new parent tile
+		xCoord = parentTile.xCoord;
+		yCoord = parentTile.yCoord;
 	}
 }
