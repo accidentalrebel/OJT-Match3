@@ -12,8 +12,12 @@ class PlayArea extends JK2DArray
 	var layerFG : JKSprite;
 	var layerBG : JKSprite;
 	
+	var colSpawners : Array<JewelSpawner>;
+	
 	public function new() 
 	{			
+		colSpawners = new Array<JewelSpawner>();
+		
 		Registry.game.playArea = this;
 		
 		layerBG = new JKSprite(this);
@@ -27,10 +31,8 @@ class PlayArea extends JK2DArray
 		populate();
 		getNeighbors();
 		
-		var colSpawner0 : Dynamic = get(0, 0);
-		trace(colSpawner0.objectName);
-		colSpawner0.spawnJewels(5);
-		
+		colSpawners[3].spawnJewels(5);
+						
 		var theTile : Tile = get(3, 4);
 		theTile.spawnResident();
 		theTile = get(3, 3);
@@ -48,7 +50,9 @@ class PlayArea extends JK2DArray
 			{				
 				if ( j == 0 )			// We set up the jewel spawners
 				{
-					set(new JewelSpawner(i, j, layerBG, layerFG), i, j);
+					var theJewelSpawner : JewelSpawner = new JewelSpawner(i, j, layerBG, layerFG);
+					set(theJewelSpawner, i, j);
+					colSpawners.insert(i, theJewelSpawner); 
 				}
 				else					// We set up the normal tiles
 				{
