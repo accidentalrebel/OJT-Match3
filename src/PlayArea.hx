@@ -98,9 +98,18 @@ class PlayArea extends JK2DArray
 	public function selectTile( clickedTile : Tile )
 	{
 		if ( selectedTile == null )					// If there are no tiles that are currently selected
-		{
+		{			
 			moveMarkerTo(clickedTile);				// We move the marker to positoin
 			marker.show();
+			selectedTile = clickedTile;
+		}
+		else										// If there is a selected Tile
+		{
+			if ( selectedTile == clickedTile )		// If the clickedTIle is already selected
+			{
+				selectedTile = null;				// We deselect the tile
+				marker.hide();
+			}
 		}
 	}
 }
