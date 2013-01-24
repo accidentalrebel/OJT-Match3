@@ -37,7 +37,7 @@ class Tile extends JKSprite
 		x = xCoord * width;
 		y = yCoord * height;
 		
-		//spawnResident(layerForJewel);
+		spawnResident();
 		getNeighbors();
 	}
 	

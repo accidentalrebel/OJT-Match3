@@ -66,7 +66,7 @@ class Jewel extends JKButton
 		
 		// Checking if can fall
 		if ( !isMoving && checkIfCanFall() )
-		{			
+		{	
 			applyGravity();
 		}
 		
@@ -178,8 +178,6 @@ class Jewel extends JKButton
 	{		
 		isCleared = true;
 		parentTile.residentJewel = null;
-		//Registry.game.playArea.colSpawners[xCoord].spawnJewels(1);
 		destroy();
-		//hide();
 	}
 }

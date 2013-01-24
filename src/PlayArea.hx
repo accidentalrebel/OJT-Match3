@@ -38,7 +38,7 @@ class PlayArea extends JK2DArray
 		populateWithJewels();		
 		
 		marker = new JKSprite("img/marker.png", layerBG);
-		marker.hide();
+		marker.hide();		
 	}	
 	
 	/********************************************************************************
@@ -48,7 +48,7 @@ class PlayArea extends JK2DArray
 	{
 		for ( i in 0...arrayWidth )
 		{
-			colSpawners[i].spawnJewels(8);
+			//colSpawners[i].spawnJewels(8);
 		}
 	}
 	 
@@ -101,6 +101,14 @@ class PlayArea extends JK2DArray
 	 * ******************************************************************************/
 	public function selectTile( clickedTile : Tile )
 	{			
+		//var theTile : Tile = get(3, 3);
+		//theTile.residentJewel.clear();
+		//theTile = get(3, 4);
+		//theTile.residentJewel.clear();
+		//theTile = get(3, 5);
+		//theTile.residentJewel.clear();
+		//trace("left is " + get(3,4).residentJewel);
+		//
 		if ( selectedTile == null )					// If there are no tiles that are currently selected
 		{			
 			moveMarkerTo(clickedTile);				// We move the marker to positoin
@@ -140,22 +148,27 @@ class PlayArea extends JK2DArray
 		{
 			for ( j in 0...arrayHeight )
 			{
-				Lib.trace(i + ", " + (arrayHeight - 1- j));
-				var theTile : Tile = get(i, arrayHeight - 1- j);
-				theTile.checkForMatch();
+				Lib.trace("Checking for matches: " + i + ", " + (arrayHeight - 1- j));
+				var theTile : Tile = get(i, arrayHeight - 1 - j);
+				if ( theTile.residentJewel != null )
+					theTile.checkForMatch();
+				
+				clearMarked();				
 			}
 		}
 		
-		clearMarked();
+		//clearMarked();
 	}
 	
 	public function clearMarked()
 	{
 		isClearing = true;
+		tilesForClearing.reverse();
 		for ( tile in tilesForClearing )
 		{			
 			if ( tile.residentJewel != null )
-			{
+			{		
+				Lib.trace("Clearing: " + tile.objectName);
 				tile.residentJewel.clear();
 			}
 			//if ( jewel != null  && !jewel.isCleared )
