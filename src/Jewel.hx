@@ -140,8 +140,7 @@ class Jewel extends JKButton
 		parentTile = parentTile.bottomNeighbor;						// We set our ne parentTile
 		parentTile.residentJewel = this;							// We assign ourselves to the new parent tile
 		
-		xCoord = parentTile.xCoord;
-		yCoord = parentTile.yCoord;
+		updateMapPosition();
 	}
 	
 	public function switchWith( jewelToSwitchWith : Jewel )
@@ -158,6 +157,23 @@ class Jewel extends JKButton
 		parentTile.residentJewel = jewelToSwitchWith;		
 		parentTile = tempTile;
 		parentTile.residentJewel = this;
+		
+		this.updateMapPosition();
+		jewelToSwitchWith.updateMapPosition();
 	}
 	
+	function updateMapPosition()
+	{
+		xCoord = parentTile.xCoord;
+		yCoord = parentTile.yCoord;
+	}
+	
+	/********************************************************************************
+	 * DESTROY / CLEAR
+	 * ******************************************************************************/
+	public function clear()
+	{
+		parentTile.residentJewel = null;
+		destroy();
+	}
 }
