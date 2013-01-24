@@ -9,11 +9,11 @@ import jkEngine.JKSprite;
 
 class PlayArea extends JK2DArray
 {
+	public var colSpawners : Array<JewelSpawner>;	
+	public var selectedTile : Tile;	
 	var layerFG : JKSprite;
-	var layerBG : JKSprite;
-	
-	var marker : JKSprite;
-	public var colSpawners : Array<JewelSpawner>;
+	var layerBG : JKSprite;	
+	var marker : JKSprite;	
 	
 	public function new() 
 	{			
@@ -34,6 +34,7 @@ class PlayArea extends JK2DArray
 		populateWithJewels();		
 		
 		marker = new JKSprite("img/marker.png", layerBG);
+		marker.hide();
 	}	
 	
 	/********************************************************************************
@@ -85,9 +86,21 @@ class PlayArea extends JK2DArray
 	/********************************************************************************
 	 * MARKER
 	 * ******************************************************************************/
-	public function moveMarkerTo(thisTile : Tile)
+	function moveMarkerTo(thisTile : Tile)
 	{
 		marker.x = thisTile.x;
 		marker.y = thisTile.y;
+	}
+	
+	/********************************************************************************
+	 * TILE SELECTION
+	 * ******************************************************************************/
+	public function selectTile( clickedTile : Tile )
+	{
+		if ( selectedTile == null )					// If there are no tiles that are currently selected
+		{
+			moveMarkerTo(clickedTile);				// We move the marker to positoin
+			marker.show();
+		}
 	}
 }
