@@ -122,16 +122,16 @@ class Jewel extends JKSprite
 	{
 		Actuate.tween(this, movementSpeed, { x : coordinate.x, y : coordinate.y } );			// We tween to position		
 		movementTimer.start();
-	}
-	
-	function onMovementFinish(e : TimerEvent)
-	{
-		isMoving = false;
-				
+		
 		parentTile.residentJewel = null;							// We remove our reference from our old parent tile
 		parentTile = parentTile.bottomNeighbor;						// We set our ne parentTile
 		parentTile.residentJewel = this;							// We assign ourselves to the new parent tile
 		xCoord = parentTile.xCoord;
 		yCoord = parentTile.yCoord;
+	}
+	
+	function onMovementFinish(e : TimerEvent)
+	{
+		isMoving = false;
 	}
 }
