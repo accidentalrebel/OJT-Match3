@@ -12,8 +12,8 @@ class PlayArea extends JK2DArray
 	{	
 		super(8, 8, null);
 		
-		x = 20;
-		y = 20;
+		x = 40;
+		y = 40;
 		
 		populate();
 		
