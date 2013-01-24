@@ -12,23 +12,26 @@ class Tile extends JKSprite
 	var xCoord : Int;
 	var yCoord : Int;
 	
-	public function new(XCoord : Int, YCoord : Int, ?layerForTile : DisplayObjectContainer, ?layerForJewel : DisplayObjectContainer ) 
+	var layerForJewel : DisplayObjectContainer;
+	
+	public function new(XCoord : Int, YCoord : Int, ?layerForTile : DisplayObjectContainer, ?LayerForJewel : DisplayObjectContainer ) 
 	{
 		xCoord = XCoord;
 		yCoord = YCoord;		
+		layerForJewel = LayerForJewel;
 		
 		super(xCoord, yCoord, "img/tile.png", layerForTile);
 		
 		x = xCoord * width;
 		y = yCoord * height;
 		
-		spawnResident(layerForJewel);
+		//spawnResident(layerForJewel);
 	}
 	
 	/********************************************************************************
 	 * SPAWNING
 	 * ******************************************************************************/
-	function spawnResident(layerForJewel : DisplayObjectContainer)
+	public function spawnResident()
 	{
 		residentJewel = new Jewel(xCoord, yCoord, layerForJewel);
 	}
