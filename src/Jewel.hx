@@ -61,6 +61,9 @@ class Jewel extends JKButton
 	{
 		super.update();
 		
+		if ( Registry.game.playArea.isClearing )
+			return;
+		
 		// Checking if can fall
 		if ( !isMoving && checkIfCanFall() )
 		{			
@@ -172,9 +175,9 @@ class Jewel extends JKButton
 	 * DESTROY / CLEAR
 	 * ******************************************************************************/
 	public function clear()
-	{
-		parentTile.residentJewel = null;
+	{		
 		isCleared = true;
+		parentTile.residentJewel = null;
 		//Registry.game.playArea.colSpawners[xCoord].spawnJewels(1);
 		destroy();
 		//hide();

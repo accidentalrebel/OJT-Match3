@@ -12,6 +12,7 @@ class PlayArea extends JK2DArray
 {
 	public var colSpawners : Array<JewelSpawner>;
 	var tilesForClearing : Array<Tile>;
+	public var isClearing : Bool = false;
 	public var selectedTile : Tile;	
 	var layerFG : JKSprite;
 	var layerBG : JKSprite;	
@@ -134,7 +135,7 @@ class PlayArea extends JK2DArray
 	 * MATCH CHECKING
 	 * ******************************************************************************/
 	public function checkForMatches()
-	{
+	{		
 		for ( i in 0...arrayWidth )
 		{
 			for ( j in 0...arrayHeight )
@@ -149,8 +150,13 @@ class PlayArea extends JK2DArray
 	
 	public function clearMarked()
 	{
+		isClearing = true;
 		for ( tile in tilesForClearing )
 		{			
+			if ( tile.residentJewel != null )
+			{
+				tile.residentJewel.clear();
+			}
 			//if ( jewel != null  && !jewel.isCleared )
 			//{
 				//var theParentTile = jewel.parentTile;			
@@ -158,6 +164,7 @@ class PlayArea extends JK2DArray
 				//jewel.clear();			
 			//}
 		}
+		isClearing = false;
 	}
 	
 	public function setForClearing( thisTile : Tile)
