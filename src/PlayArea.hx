@@ -110,6 +110,26 @@ class PlayArea extends JK2DArray
 				selectedTile = null;				// We deselect the tile
 				marker.hide();
 			}
+			else									// If this is a different tile
+			{
+				// We check if the selected tile is a neighbor
+				if ( clickedTile == selectedTile.topNeighbor )			// If this is a top neighbor
+				{
+					trace("clicked the top neighbor");
+				}
+				else if ( clickedTile == selectedTile.rightNeighbor )	// If this tile is right neighbor
+				{
+					trace("Clicked the right neighbor");
+				}
+				else if ( clickedTile == selectedTile.bottomNeighbor )	// If this tile is bottom neighbor
+				{
+					trace("Clicked the bottom neighbor");
+				}
+				else if ( clickedTile == selectedTile.leftNeighbor )	// If this tile is left neighbor
+				{
+					trace("Clicked the left neighbor");
+				}				
+			}
 		}
 	}
 }
