@@ -5,7 +5,7 @@ import nme.display.DisplayObjectContainer;
  * ...
  * @author Karlo
  */
-
+ 
 class Tile extends JKSprite
 {
 	var residentJewel : Jewel;
@@ -32,4 +32,6 @@ class Tile extends JKSprite
 	{
 		residentJewel = new Jewel(xCoord, yCoord, layerForJewel);
 	}
+	
+	
 }
