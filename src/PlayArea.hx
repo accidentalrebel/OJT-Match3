@@ -12,16 +12,17 @@ class PlayArea extends JK2DArray
 	var layerFG : JKSprite;
 	var layerBG : JKSprite;
 	
+	var marker : JKSprite;
 	public var colSpawners : Array<JewelSpawner>;
 	
 	public function new() 
 	{			
-		colSpawners = new Array<JewelSpawner>();
+		colSpawners = new Array<JewelSpawner>();		
 		
 		Registry.game.playArea = this;
 		
 		layerBG = new JKSprite(this);
-		layerFG = new JKSprite(this);
+		layerFG = new JKSprite(this);		
 		
 		super(8, 8, null);
 		
@@ -31,6 +32,8 @@ class PlayArea extends JK2DArray
 		populateWithTiles();
 		getNeighbors();
 		populateWithJewels();		
+		
+		marker = new JKSprite("img/marker.png", layerBG);
 	}	
 	
 	/********************************************************************************
@@ -77,5 +80,14 @@ class PlayArea extends JK2DArray
 				theTile.getNeighbors();
 			}
 		}
+	}
+	
+	/********************************************************************************
+	 * MARKER
+	 * ******************************************************************************/
+	public function moveMarkerTo(thisTile : Tile)
+	{
+		marker.x = thisTile.x;
+		marker.y = thisTile.y;
 	}
 }

@@ -69,7 +69,8 @@ class Jewel extends JKButton
 		// Checking for click
 		if ( !isMoving && isClicked )
 		{
-			trace(objectName + "i am clicked");
+			Registry.game.playArea.moveMarkerTo(parentTile);
+			Lib.trace(objectName + "i am clicked");
 		}
 	}
 	
