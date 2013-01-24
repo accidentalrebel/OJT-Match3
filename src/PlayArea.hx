@@ -1,5 +1,6 @@
 package ;
 import jkEngine.JK2DArray;
+import jkEngine.JKSprite;
 
 /**
  * ...
@@ -8,15 +9,20 @@ import jkEngine.JK2DArray;
 
 class PlayArea extends JK2DArray
 {
+	var layerFG : JKSprite;
+	var layerBG : JKSprite;
+	
 	public function new() 
 	{	
+		layerFG = new JKSprite(this);
+		layerBG = new JKSprite(this);
+		
 		super(8, 8, null);
 		
 		x = 40;
 		y = 40;
 		
-		populate();
-		
+		populate();		
 	}	
 	
 	override public function populate(?toPopulateWith:Dynamic):Dynamic 
@@ -25,7 +31,7 @@ class PlayArea extends JK2DArray
 		{
 			for ( j in 0...arrayHeight )
 			{
-				set(new Tile(i, j, this), i, j);
+				set(new Tile(i, j, layerBG, layerFG), i, j);
 			}
 		}
 	}

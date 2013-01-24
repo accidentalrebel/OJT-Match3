@@ -13,6 +13,8 @@ class Game extends JKGame
 	
 	public function new() 
 	{
+		Registry.game = this;
+		
 		super();
 		
 		playArea = new PlayArea();
