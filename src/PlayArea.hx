@@ -140,7 +140,8 @@ class PlayArea extends JK2DArray
 		{
 			for ( j in 0...arrayHeight )
 			{
-				var theTile : Tile = get(i, j);
+				Lib.trace(i + ", " + (arrayHeight - 1- j));
+				var theTile : Tile = get(i, arrayHeight - 1- j);
 				theTile.checkForMatch();
 			}
 		}
