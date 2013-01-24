@@ -20,6 +20,8 @@ class Tile extends JKSprite
 		yCoord = YCoord;		
 		layerForJewel = LayerForJewel;
 		
+		objectName = "Tile(" + xCoord + "," + yCoord + ")";
+		
 		super(xCoord, yCoord, "img/tile.png", layerForTile);
 		
 		x = xCoord * width;

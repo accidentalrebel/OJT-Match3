@@ -32,7 +32,10 @@ class Jewel extends JKSprite
 	{		
 		xCoord = XCoord;
 		yCoord = YCoord;
-		theParent = parentTile;
+		parentTile = theParent;
+		
+		objectName = "Jewel(" + xCoord + "," + yCoord + ")";
+		trace(objectName + " = " + parentTile.objectName );
 		
 		super(0, 0, theLayer);
 				
