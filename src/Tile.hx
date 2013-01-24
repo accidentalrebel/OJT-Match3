@@ -85,7 +85,7 @@ class Tile extends JKSprite
 			{
 				Registry.game.playArea.setForClearing(topNeighbor);
 				Registry.game.playArea.setForClearing(this);
-				nme.Lib.trace(topNeighbor.objectName + " and " +  this.objectName + " added for clearing");
+				nme.Lib.trace(topNeighbor.residentJewel.objectName + " and " +  this.residentJewel.objectName + " added for clearing");
 			}
 		}
 	}

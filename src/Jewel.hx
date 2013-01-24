@@ -178,6 +178,7 @@ class Jewel extends JKButton
 	 * ******************************************************************************/
 	public function clear()
 	{		
+		Lib.trace(objectName + " i am being cleared!");
 		isCleared = true;
 		parentTile.residentJewel = null;
 		destroy();

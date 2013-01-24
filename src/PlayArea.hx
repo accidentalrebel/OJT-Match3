@@ -181,11 +181,12 @@ class PlayArea extends JK2DArray
 				if ( theTile.residentJewel != null )
 					theTile.checkForMatch();
 				
-				clearMarked();				
+				//clearMarked();				
 			}
 		}
 		
-		//clearMarked();
+		clearMarked();
+		displayAllContent();
 	}
 	
 	public function clearMarked()
