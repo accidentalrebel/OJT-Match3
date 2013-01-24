@@ -61,7 +61,6 @@ class Jewel extends JKSprite
 		
 		if ( !isMoving && checkIfCanFall() )
 		{			
-			Lib.trace(" i am falling");
 			applyGravity();
 		}
 	}

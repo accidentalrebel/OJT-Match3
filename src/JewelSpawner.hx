@@ -22,9 +22,7 @@ class JewelSpawner extends Tile
 	{
 		if ( numToSpawn > 8 )
 			numToSpawn = 8;
-		
-		trace("spawning jewels");
-		
+				
 		spawnTimer = new Timer(500, numToSpawn);
 		spawnTimer.addEventListener(TimerEvent.TIMER, spawnAJewel);
 		spawnTimer.start();

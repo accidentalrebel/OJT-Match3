@@ -12,7 +12,7 @@ class PlayArea extends JK2DArray
 	var layerFG : JKSprite;
 	var layerBG : JKSprite;
 	
-	var colSpawners : Array<JewelSpawner>;
+	public var colSpawners : Array<JewelSpawner>;
 	
 	public function new() 
 	{			
@@ -28,17 +28,23 @@ class PlayArea extends JK2DArray
 		x = 40;
 		y = 40;
 		
-		populate();
+		populateWithTiles();
 		getNeighbors();
-		
-		colSpawners[3].spawnJewels(8);
-		colSpawners[4].spawnJewels(8);
+		populateWithJewels();		
 	}	
 	
 	/********************************************************************************
 	 * POPULATING
 	 * ******************************************************************************/
-	override public function populate(?toPopulateWith:Dynamic):Dynamic 
+	function populateWithJewels()
+	{
+		for ( i in 0...arrayWidth )
+		{
+			colSpawners[i].spawnJewels(8);
+		}
+	}
+	 
+	function populateWithTiles()
 	{
 		for ( i in 0...arrayWidth )
 		{
