@@ -1,4 +1,5 @@
 package ;
+import jkEngine.JKButton;
 import jkengine.JKPoint;
 import jkEngine.JKSprite;
 import nme.utils.Timer;
@@ -23,7 +24,7 @@ enum JewelColor
 	yellow;
 }
  
-class Jewel extends JKSprite
+class Jewel extends JKButton
 {
 	var xCoord : Int;
 	var yCoord : Int;
@@ -59,9 +60,16 @@ class Jewel extends JKSprite
 	{
 		super.update();
 		
+		// Checking if can fall
 		if ( !isMoving && checkIfCanFall() )
 		{			
 			applyGravity();
+		}
+		
+		// Checking for click
+		if ( !isMoving && isClicked )
+		{
+			trace(objectName + "i am clicked");
 		}
 	}
 	

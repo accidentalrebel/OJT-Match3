@@ -1,4 +1,5 @@
 package ;
+import jkEngine.JKButton;
 import jkEngine.JKSprite;
 import nme.display.DisplayObjectContainer;
 /**
@@ -20,6 +21,9 @@ class Tile extends JKSprite
 		
 	var layerForJewel : DisplayObjectContainer;
 	
+	/********************************************************************************
+	 * MAIN
+	 * ******************************************************************************/
 	public function new(XCoord : Int, YCoord : Int, ?layerForTile : DisplayObjectContainer, ?LayerForJewel : DisplayObjectContainer ) 
 	{
 		xCoord = XCoord;
