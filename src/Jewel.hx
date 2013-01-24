@@ -126,6 +126,11 @@ class Jewel extends JKButton
 		moveTo( new JKPoint(parentTile.bottomNeighbor.x, parentTile.bottomNeighbor.y));
 	}
 	
+	function onMovementFinish(e : TimerEvent)
+	{
+		isMoving = false;
+	}
+	
 	function moveTo( coordinate : JKPoint )
 	{
 		Actuate.tween(this, movementSpeed, { x : coordinate.x, y : coordinate.y } );			// We tween to position		
@@ -138,8 +143,12 @@ class Jewel extends JKButton
 		yCoord = parentTile.yCoord;
 	}
 	
-	function onMovementFinish(e : TimerEvent)
+	public function switchWith( jewelToSwitchWith : Jewel )
 	{
-		isMoving = false;
+		var tempX = x;
+		var tempY = y;
+		Actuate.tween(this, movementSpeed, { x : jewelToSwitchWith.x, y : jewelToSwitchWith.y } );			// We tween to position		
+		Actuate.tween(jewelToSwitchWith, movementSpeed, { x : tempX, y : tempY } );			// We tween to position		
 	}
+	
 }

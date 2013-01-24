@@ -115,6 +115,7 @@ class PlayArea extends JK2DArray
 				// We check if the selected tile is a neighbor
 				if ( clickedTile == selectedTile.topNeighbor )			// If this is a top neighbor
 				{
+					clickedTile.residentJewel.switchWith(selectedTile.residentJewel);
 					trace("clicked the top neighbor");
 				}
 				else if ( clickedTile == selectedTile.rightNeighbor )	// If this tile is right neighbor
