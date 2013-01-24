@@ -13,9 +13,9 @@ class PlayArea extends JK2DArray
 	var layerBG : JKSprite;
 	
 	public function new() 
-	{	
-		layerFG = new JKSprite(this);
+	{			
 		layerBG = new JKSprite(this);
+		layerFG = new JKSprite(this);
 		
 		super(8, 8, null);
 		
@@ -25,6 +25,9 @@ class PlayArea extends JK2DArray
 		populate();		
 	}	
 	
+	/********************************************************************************
+	 * POPULATING
+	 * ******************************************************************************/
 	override public function populate(?toPopulateWith:Dynamic):Dynamic 
 	{
 		for ( i in 0...arrayWidth )

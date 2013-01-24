@@ -8,11 +8,28 @@ import nme.display.DisplayObjectContainer;
 
 class Tile extends JKSprite
 {
-	public function new(xCoord : Int, yCoord : Int, ?layerForTile : DisplayObjectContainer, ?layerForJewel : DisplayObjectContainer ) 
+	var residentJewel : Jewel;
+	var xCoord : Int;
+	var yCoord : Int;
+	
+	public function new(XCoord : Int, YCoord : Int, ?layerForTile : DisplayObjectContainer, ?layerForJewel : DisplayObjectContainer ) 
 	{
+		xCoord = XCoord;
+		yCoord = YCoord;		
+		
 		super(xCoord, yCoord, "img/tile.png", layerForTile);
 		
 		x = xCoord * width;
 		y = yCoord * height;
+		
+		spawnResident(layerForJewel);
+	}
+	
+	/********************************************************************************
+	 * SPAWNING
+	 * ******************************************************************************/
+	function spawnResident(layerForJewel : DisplayObjectContainer)
+	{
+		residentJewel = new Jewel(xCoord, yCoord, layerForJewel);
 	}
 }
