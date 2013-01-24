@@ -1,6 +1,8 @@
 package ;
+import jkengine.JKPoint;
 import jkEngine.JKSprite;
 import nme.display.DisplayObjectContainer;
+import com.eclecticdesignstudio.motion.Actuate;
 
 /**
  * ...
@@ -25,6 +27,7 @@ class Jewel extends JKSprite
 	var currentColor : JewelColor;
 	var parentTile : Tile;
 	var isMoving = false;
+	var movementSpeed : Float = 0.5;
 	
 	/********************************************************************************
 	 * MAIN
@@ -102,5 +105,11 @@ class Jewel extends JKSprite
 	function applyGravity()
 	{
 		isMoving = true;
+		moveTo( new JKPoint(parentTile.bottomNeighbor.x, parentTile.bottomNeighbor.y));
+	}
+	
+	function moveTo( coordinate : JKPoint )
+	{
+		Actuate.tween(this, movementSpeed, { x : coordinate.x, y : coordinate.y } );			// We tween to position
 	}
 }
