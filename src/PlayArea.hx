@@ -1,6 +1,7 @@
 package ;
 import jkEngine.JK2DArray;
 import jkEngine.JKSprite;
+import nme.Lib;
 
 /**
  * ...
@@ -10,7 +11,7 @@ import jkEngine.JKSprite;
 class PlayArea extends JK2DArray
 {
 	public var colSpawners : Array<JewelSpawner>;
-	var jewelsForClearing : Array<Jewel>;
+	var tilesForClearing : Array<Tile>;
 	public var selectedTile : Tile;	
 	var layerFG : JKSprite;
 	var layerBG : JKSprite;	
@@ -19,7 +20,7 @@ class PlayArea extends JK2DArray
 	public function new() 
 	{			
 		colSpawners = new Array<JewelSpawner>();		
-		jewelsForClearing = new Array<Jewel>();
+		tilesForClearing = new Array<Tile>();
 		
 		Registry.game.playArea = this;
 		
@@ -98,10 +99,7 @@ class PlayArea extends JK2DArray
 	 * TILE SELECTION
 	 * ******************************************************************************/
 	public function selectTile( clickedTile : Tile )
-	{	
-		clickedTile.checkForMatch();
-		clearMarked();
-		
+	{			
 		if ( selectedTile == null )					// If there are no tiles that are currently selected
 		{			
 			moveMarkerTo(clickedTile);				// We move the marker to positoin
@@ -126,7 +124,7 @@ class PlayArea extends JK2DArray
 						clickedTile.residentJewel.switchWith(selectedTile.residentJewel);						
 						marker.hide();
 						selectedTile = null;
-						//checkForMatches();
+						checkForMatches();						
 					}			
 			}
 		}
@@ -145,18 +143,25 @@ class PlayArea extends JK2DArray
 				theTile.checkForMatch();
 			}
 		}
+		
+		clearMarked();
 	}
 	
 	public function clearMarked()
 	{
-		for ( jewel in jewelsForClearing )
-		{
-			jewel.clear();
+		for ( tile in tilesForClearing )
+		{			
+			//if ( jewel != null  && !jewel.isCleared )
+			//{
+				//var theParentTile = jewel.parentTile;			
+				//Lib.trace(theParentTile.objectName + " is cleared");
+				//jewel.clear();			
+			//}
 		}
 	}
 	
-	public function setForClearing( thisJewel : Jewel)
+	public function setForClearing( thisTile : Tile)
 	{
-		jewelsForClearing.push(thisJewel);
+		tilesForClearing.push(thisTile);
 	}
 }

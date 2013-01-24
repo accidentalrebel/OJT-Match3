@@ -28,8 +28,9 @@ class Jewel extends JKButton
 {
 	var xCoord : Int;
 	var yCoord : Int;
+	public var isCleared : Bool = false;
 	
-	var parentTile : Tile;
+	public var parentTile : Tile;
 	var isMoving = false;	
 	var movementSpeed : Float = 0.5;
 	var movementTimer : Timer;
@@ -173,7 +174,9 @@ class Jewel extends JKButton
 	public function clear()
 	{
 		parentTile.residentJewel = null;
-		Registry.game.playArea.colSpawners[xCoord].spawnJewels(1);
+		isCleared = true;
+		//Registry.game.playArea.colSpawners[xCoord].spawnJewels(1);
 		destroy();
+		//hide();
 	}
 }

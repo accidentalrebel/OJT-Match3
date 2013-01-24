@@ -83,8 +83,9 @@ class Tile extends JKSprite
 		{
 			if ( topNeighbor.residentJewel.currentColor == residentJewel.currentColor )
 			{
-				Registry.game.playArea.setForClearing(topNeighbor.residentJewel);
-				Registry.game.playArea.setForClearing(residentJewel);
+				Registry.game.playArea.setForClearing(topNeighbor);
+				Registry.game.playArea.setForClearing(this);
+				nme.Lib.trace(topNeighbor.objectName + " and " +  this.objectName + " added for clearing");
 			}
 		}
 	}
