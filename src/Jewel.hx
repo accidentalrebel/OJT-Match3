@@ -23,11 +23,16 @@ class Jewel extends JKSprite
 	var xCoord : Int;
 	var yCoord : Int;
 	var currentColor : JewelColor;
+	var parentTile : Tile;
 	
-	public function new(XCoord : Int, YCoord : Int, ?theLayer : DisplayObjectContainer) 
+	/********************************************************************************
+	 * MAIN
+	 * ******************************************************************************/
+	public function new(XCoord : Int, YCoord : Int, theParent : Tile, ?theLayer : DisplayObjectContainer) 
 	{		
 		xCoord = XCoord;
 		yCoord = YCoord;
+		theParent = parentTile;
 		
 		super(0, 0, theLayer);
 				
@@ -35,6 +40,16 @@ class Jewel extends JKSprite
 		
 		x = xCoord * width;
 		y = yCoord * height;
+	}
+	
+	override private function update():Dynamic 
+	{
+		super.update();
+		
+		if ( checkIfCanFall() )
+		{
+			applyGravity();
+		}
 	}
 	
 	/********************************************************************************
@@ -72,4 +87,13 @@ class Jewel extends JKSprite
 	/********************************************************************************
 	 * MOVEMENT
 	 * ******************************************************************************/
+	function checkIfCanFall() : Bool
+	{
+		return false;
+	}
+	 
+	function applyGravity()
+	{
+		
+	}
 }

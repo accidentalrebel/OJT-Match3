@@ -9,7 +9,7 @@ import nme.Lib;
 
 class Game extends JKGame
 {	
-	var playArea : PlayArea;
+	public var playArea : PlayArea;
 	
 	public function new() 
 	{
