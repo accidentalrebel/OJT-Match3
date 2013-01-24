@@ -72,4 +72,20 @@ class Tile extends JKSprite
 		if ( xCoord > 0 )
 			leftNeighbor = playArea.get(xCoord - 1, yCoord);
 	}
+	
+	/********************************************************************************
+	 * MATCH CHECKING
+	 * ******************************************************************************/
+	public function checkForMatch()
+	{
+		// We check the top first
+		if ( topNeighbor != null )
+		{
+			if ( topNeighbor.residentJewel.currentColor == residentJewel.currentColor )
+			{
+				Registry.game.playArea.setForClearing(topNeighbor.residentJewel);
+				Registry.game.playArea.setForClearing(residentJewel);
+			}
+		}
+	}
 }

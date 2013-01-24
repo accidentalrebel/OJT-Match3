@@ -28,11 +28,13 @@ class Jewel extends JKButton
 {
 	var xCoord : Int;
 	var yCoord : Int;
-	var currentColor : JewelColor;
+	
 	var parentTile : Tile;
 	var isMoving = false;	
 	var movementSpeed : Float = 0.5;
 	var movementTimer : Timer;
+	
+	public var currentColor : JewelColor;
 	
 	/********************************************************************************
 	 * MAIN
@@ -42,8 +44,6 @@ class Jewel extends JKButton
 		xCoord = XCoord;
 		yCoord = YCoord;
 		parentTile = theParent;
-		
-		objectName = "Jewel(" + xCoord + "," + yCoord + ")";
 		
 		super(0, 0, theLayer);
 				
@@ -70,7 +70,6 @@ class Jewel extends JKButton
 		if ( !isMoving && isClicked )
 		{
 			Registry.game.playArea.selectTile(parentTile);
-			Lib.trace(objectName + "i am clicked");
 		}
 	}
 	

@@ -9,7 +9,8 @@ import jkEngine.JKSprite;
 
 class PlayArea extends JK2DArray
 {
-	public var colSpawners : Array<JewelSpawner>;	
+	public var colSpawners : Array<JewelSpawner>;
+	var jewelsForClearing : Array<Jewel>;
 	public var selectedTile : Tile;	
 	var layerFG : JKSprite;
 	var layerBG : JKSprite;	
@@ -18,6 +19,7 @@ class PlayArea extends JK2DArray
 	public function new() 
 	{			
 		colSpawners = new Array<JewelSpawner>();		
+		jewelsForClearing = new Array<Jewel>();
 		
 		Registry.game.playArea = this;
 		
@@ -96,7 +98,10 @@ class PlayArea extends JK2DArray
 	 * TILE SELECTION
 	 * ******************************************************************************/
 	public function selectTile( clickedTile : Tile )
-	{		
+	{	
+		clickedTile.checkForMatch();
+		clearMarked();
+		
 		if ( selectedTile == null )					// If there are no tiles that are currently selected
 		{			
 			moveMarkerTo(clickedTile);				// We move the marker to positoin
@@ -121,8 +126,37 @@ class PlayArea extends JK2DArray
 						clickedTile.residentJewel.switchWith(selectedTile.residentJewel);						
 						marker.hide();
 						selectedTile = null;
+						//checkForMatches();
 					}			
 			}
 		}
+	}
+	
+	/********************************************************************************
+	 * MATCH CHECKING
+	 * ******************************************************************************/
+	public function checkForMatches()
+	{
+		for ( i in 0...arrayWidth )
+		{
+			for ( j in 0...arrayHeight )
+			{
+				var theTile : Tile = get(i, j);
+				theTile.checkForMatch();
+			}
+		}
+	}
+	
+	public function clearMarked()
+	{
+		for ( jewel in jewelsForClearing )
+		{
+			jewel.clear();
+		}
+	}
+	
+	public function setForClearing( thisJewel : Jewel)
+	{
+		jewelsForClearing.push(thisJewel);
 	}
 }
