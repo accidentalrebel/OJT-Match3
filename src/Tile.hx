@@ -8,10 +8,12 @@ import nme.display.DisplayObjectContainer;
 
 class Tile extends JKSprite
 {
-
 	public function new(xCoord : Int, yCoord : Int, ?theLayer : DisplayObjectContainer ) 
 	{
 		super(xCoord, yCoord, "img/tile.png", theLayer);
+		
+		x = xCoord * width;
+		y = yCoord * height;
 	}
 	
 }
