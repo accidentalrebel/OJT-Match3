@@ -40,7 +40,7 @@ class Tile extends JKSprite
 	/********************************************************************************
 	 * SPAWNING
 	 * ******************************************************************************/
-	public function spawnResident()
+	function spawnResident()
 	{
 		residentJewel = new Jewel(xCoord, yCoord, this, layerForJewel);
 	}	
