@@ -27,7 +27,11 @@ class PlayArea extends JK2DArray
 		populate();
 		getNeighbors();
 		
-		var theTile : Tile = get(3, 6);
+		var colSpawner0 : Dynamic = get(0, 0);
+		trace(colSpawner0.objectName);
+		colSpawner0.spawnJewels(5);
+		
+		var theTile : Tile = get(3, 4);
 		theTile.spawnResident();
 		theTile = get(3, 3);
 		theTile.spawnResident();
@@ -41,8 +45,15 @@ class PlayArea extends JK2DArray
 		for ( i in 0...arrayWidth )
 		{
 			for ( j in 0...arrayHeight )
-			{
-				set(new Tile(i, j, layerBG, layerFG), i, j);
+			{				
+				if ( j == 0 )			// We set up the jewel spawners
+				{
+					set(new JewelSpawner(i, j, layerBG, layerFG), i, j);
+				}
+				else					// We set up the normal tiles
+				{
+					set(new Tile(i, j, layerBG, layerFG), i, j);
+				}
 			}
 		}
 	}

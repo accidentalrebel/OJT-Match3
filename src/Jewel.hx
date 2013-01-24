@@ -29,7 +29,7 @@ class Jewel extends JKSprite
 	var yCoord : Int;
 	var currentColor : JewelColor;
 	var parentTile : Tile;
-	var isMoving = false;
+	var isMoving = false;	
 	var movementSpeed : Float = 0.5;
 	var movementTimer : Timer;
 	
