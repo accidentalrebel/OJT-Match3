@@ -201,6 +201,8 @@ class PlayArea extends JK2DArray
 			//}
 		}
 		isClearing = false;
+		
+		tilesForClearing = [];
 	}
 	
 	public function setForClearing( thisTile : Tile)
