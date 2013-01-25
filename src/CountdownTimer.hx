@@ -11,12 +11,16 @@ import nme.utils.Timer;
 class CountdownTimer extends JKText
 {	
 	var timer : Timer;
+	var minutes : Float = 5;			// 5 minutes
+	var seconds : Float = 0;			// 0 seconds
 	
 	public function new( xPos : Float = 0, yPos : Float = 0, ?layer : DisplayObjectContainer ) 
-	{
+	{		
 		timer = new Timer(1000, 0);
 		timer.addEventListener(TimerEvent.TIMER, onTimerTick);
 		super(xPos, yPos, 300, "00:00", 0xFFFFFF, 50, "Arial", layer);
+		
+		setTimerText();
 	}
 	
 	public function startCountdown()
@@ -26,6 +30,37 @@ class CountdownTimer extends JKText
 	
 	function onTimerTick( e: TimerEvent )
 	{
-		trace("tick");
+		seconds--;						// We decrease the timerValue
+		if ( seconds < 0 )
+		{
+			seconds = 59;
+			minutes--;
+		}
+		
+		if ( seconds <= 0 && minutes <= 0 )
+		{
+			timer.stop();
+			trace("timer has ended");
+		}
+		
+		setTimerText();		
+	}
+		
+	
+	function setTimerText()
+	{
+		var secondsText : String = "";
+		var minutesText : String = "";
+		if ( seconds < 10 )
+			secondsText = "0" + Std.string(seconds);
+		else
+			secondsText = Std.string(seconds);
+		
+		if ( minutes < 10 )
+			minutesText = "0" + Std.string(minutes);
+		else
+			minutesText = Std.string(minutes);
+			
+		setText(minutesText + ":" + secondsText);
 	}
 }
