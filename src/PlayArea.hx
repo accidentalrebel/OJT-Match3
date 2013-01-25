@@ -36,7 +36,7 @@ class PlayArea extends JK2DArray
 		super(8, 8, null);
 		
 		x = 40;
-		y = 40;
+		y = 90;
 		
 		populateWithTiles();
 		getNeighbors();
