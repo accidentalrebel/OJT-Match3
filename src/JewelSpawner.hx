@@ -20,6 +20,9 @@ class JewelSpawner extends Tile
 	
 	public function spawnJewels( numToSpawn : Int )
 	{
+		if ( numToSpawn <= 0 )
+			return;
+		
 		if ( numToSpawn > 8 )
 			numToSpawn = 8;
 				

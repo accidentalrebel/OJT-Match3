@@ -11,6 +11,7 @@ import nme.Lib;
 class PlayArea extends JK2DArray
 {
 	public var colSpawners : Array<JewelSpawner>;
+	var colClearingCount : Array<Int>;
 	var tilesForClearing : Array<Tile>;
 	public var isClearing : Bool = false;
 	public var selectedTile : Tile;	
@@ -20,7 +21,8 @@ class PlayArea extends JK2DArray
 	
 	public function new() 
 	{			
-		colSpawners = new Array<JewelSpawner>();		
+		colSpawners = new Array<JewelSpawner>();
+		colClearingCount = [0,0,0,0,0,0,0,0];
 		tilesForClearing = new Array<Tile>();
 		
 		Registry.game.playArea = this;
@@ -193,11 +195,22 @@ class PlayArea extends JK2DArray
 		for ( tile in tilesForClearing )
 		{			
 			if ( tile.residentJewel != null )
-			{		
-				Lib.trace("Clearing: " + tile.objectName);
+			{	
 				tile.residentJewel.clear();
+				
+				colClearingCount[tile.xCoord] += 1;
+				Lib.trace("col " + tile.xCoord + " = " + colClearingCount[tile.xCoord]);
 			}
 		}
+		
+		for ( i in 0...arrayWidth )
+		{
+			Lib.trace("spawning " + colClearingCount[i] + " at column number " + i);
+			colSpawners[i].spawnJewels(colClearingCount[i]);
+			colClearingCount = [0,0,0,0,0,0,0,0];
+			//trace(colClearingCount[i]);
+		}
+		
 		isClearing = false;										// We have finished clearing
 		tilesForClearing = [];									// We clear the tiles
 	}
