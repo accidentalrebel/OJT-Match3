@@ -13,17 +13,20 @@ class PlayArea extends JK2DArray
 	public var colSpawners : Array<JewelSpawner>;
 	var colClearingCount : Array<Int>;
 	var tilesForClearing : Array<Tile>;
+	public var jewelsSimulating : Array<Jewel>;
 	public var isClearing : Bool = false;
 	public var selectedTile : Tile;	
 	var layerFG : JKSprite;
 	var layerBG : JKSprite;	
 	var marker : JKSprite;	
+	public var isSimulating : Bool = false;
 	
 	public function new() 
 	{			
 		colSpawners = new Array<JewelSpawner>();
 		colClearingCount = [0,0,0,0,0,0,0,0];
 		tilesForClearing = new Array<Tile>();
+		jewelsSimulating = new Array<Jewel>();
 		
 		Registry.game.playArea = this;
 		
@@ -42,7 +45,22 @@ class PlayArea extends JK2DArray
 		
 		marker = new JKSprite("img/marker.png", layerBG);
 		marker.hide();		
-	}	
+	}
+	
+	override private function update():Dynamic 
+	{
+		super.update();
+		
+		if ( isSimulating && jewelsSimulating.length <= 0 )
+		{
+			Lib.trace("simulation is done");
+			if ( checkForMatches() == false )
+			{
+				Lib.trace("there are no more matches");
+				isSimulating = false;
+			}
+		}			
+	}
 	
 	/********************************************************************************
 	 * POPULATING
@@ -100,7 +118,7 @@ class PlayArea extends JK2DArray
 	}
 	
 	/********************************************************************************
-	 * CONTENT DISPLAY
+	 * CONTENT ACCESS
 	 * ******************************************************************************/
 	override public function displayAllContent():Dynamic 
 	{
@@ -132,6 +150,9 @@ class PlayArea extends JK2DArray
 	 * ******************************************************************************/
 	public function selectTile( clickedTile : Tile )
 	{	
+		if ( isSimulating )
+			return;
+		
 		if ( selectedTile == null )					// If there are no tiles that are currently selected
 		{			
 			moveMarkerTo(clickedTile);				// We move the marker to positoin
@@ -156,7 +177,8 @@ class PlayArea extends JK2DArray
 						clickedTile.residentJewel.switchWith(selectedTile.residentJewel);						
 						marker.hide();
 						selectedTile = null;
-						checkForMatches();						
+						checkForMatches();
+						isSimulating =  true;
 					}			
 			}
 		}
@@ -164,25 +186,33 @@ class PlayArea extends JK2DArray
 	
 	/********************************************************************************
 	 * MATCH CHECKING
-	 * ******************************************************************************/
-	
+	 * ******************************************************************************/	
 	 /**
 	  * Loops through the playArea array and checks for matches
 	  */
-	 public function checkForMatches()
+	public function checkForMatches() : Bool
 	{		
+		var isThereAMatch : Bool = false;
+		
 		for ( i in 0...arrayWidth )
 		{
 			for ( j in 0...arrayHeight )
 			{												
 				var theTile : Tile = get(i, arrayHeight - 1 - j);
 				if ( theTile.residentJewel != null && !theTile.residentJewel.isCleared)
-					theTile.checkForMatch();
+				{
+					if ( theTile.checkForMatch() )
+					{
+						isThereAMatch = true;
+					}
+				}
 			}
 		}
 		
 		clearMarked();
 		displayAllContent();
+		
+		return isThereAMatch;
 	}
 	
 	/**

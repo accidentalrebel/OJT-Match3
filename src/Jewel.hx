@@ -70,6 +70,13 @@ class Jewel extends JKButton
 		if ( !isMoving && checkIfCanFall() )
 		{	
 			applyGravity();
+			
+			// If after moving we cannot fall anymore
+			//if ( !checkIfCanFall() )
+			//{
+				//Lib.trace("I cannot fall anymore");
+				//Registry.game.playArea.checkForMatches();
+			//}
 		}
 		
 		// Checking for click
@@ -134,10 +141,14 @@ class Jewel extends JKButton
 	function onMovementFinish(e : TimerEvent)
 	{
 		isMoving = false;
+		Registry.game.playArea.jewelsSimulating.remove(this);
 	}
 	
 	function moveTo( coordinate : JKPoint )
 	{
+		Registry.game.playArea.jewelsSimulating.push(this);
+		Registry.game.playArea.isSimulating = true;
+		
 		Actuate.tween(this, movementSpeed, { x : coordinate.x, y : coordinate.y } );					// We tween to position		
 		movementTimer.start();
 		

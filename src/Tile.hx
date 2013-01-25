@@ -76,8 +76,10 @@ class Tile extends JKSprite
 	/********************************************************************************
 	 * MATCH CHECKING
 	 * ******************************************************************************/
-	public function checkForMatch()
+	public function checkForMatch() : Bool
 	{
+		var isThereAMatch : Bool = false;
+		
 		// We check vertically ( going to the top )
 		if ( topNeighbor != null && topNeighbor.residentJewel != null )
 		{
@@ -90,6 +92,7 @@ class Tile extends JKSprite
 						Registry.game.playArea.setForClearing(topNeighbor.topNeighbor);
 						Registry.game.playArea.setForClearing(topNeighbor);
 						Registry.game.playArea.setForClearing(this);
+						isThereAMatch = true;
 					}
 				}
 			}
@@ -107,9 +110,12 @@ class Tile extends JKSprite
 						Registry.game.playArea.setForClearing(rightNeighbor.rightNeighbor);
 						Registry.game.playArea.setForClearing(rightNeighbor);
 						Registry.game.playArea.setForClearing(this);
+						isThereAMatch = true;
 					}
 				}
 			}
 		}
+		
+		return isThereAMatch;
 	}
 }
