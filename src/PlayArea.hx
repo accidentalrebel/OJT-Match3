@@ -192,6 +192,8 @@ class PlayArea extends JK2DArray
 	{
 		isClearing = true;										// We have started clearing
 		tilesForClearing.reverse();
+		
+		colClearingCount = [0,0,0,0,0,0,0,0];
 		for ( tile in tilesForClearing )
 		{			
 			if ( tile.residentJewel != null )
@@ -205,12 +207,11 @@ class PlayArea extends JK2DArray
 		
 		for ( i in 0...arrayWidth )
 		{
-			Lib.trace("spawning " + colClearingCount[i] + " at column number " + i);
+			Lib.trace("At column number " + i + " spawning " + colClearingCount[i] );
 			colSpawners[i].spawnJewels(colClearingCount[i]);
-			colClearingCount = [0,0,0,0,0,0,0,0];
-			//trace(colClearingCount[i]);
 		}
 		
+		colClearingCount = [0,0,0,0,0,0,0,0];		
 		isClearing = false;										// We have finished clearing
 		tilesForClearing = [];									// We clear the tiles
 	}
