@@ -10,9 +10,11 @@ import nme.Lib;
 
 class Game extends JKGame
 {	
-	public var playArea : PlayArea;
-	var guiArea : JKSprite;
+	public var playArea : PlayArea;	
+	public var isGameOver : Bool = false;
 	var countdownTimer : CountdownTimer;
+	var guiArea : JKSprite;	
+	
 	
 	public function new() 
 	{
@@ -34,5 +36,10 @@ class Game extends JKGame
 		{
 			playArea.displayAllContent();
 		}
+	}
+	
+	public function gameOver()
+	{
+		isGameOver = true;
 	}
 }

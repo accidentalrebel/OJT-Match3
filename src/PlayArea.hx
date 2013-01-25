@@ -151,7 +151,7 @@ class PlayArea extends JK2DArray
 	 * ******************************************************************************/
 	public function selectTile( clickedTile : Tile )
 	{	
-		if ( isSimulating )
+		if ( isSimulating && Registry.game.isGameOver )
 			return;
 		
 		if ( selectedTile == null )					// If there are no tiles that are currently selected

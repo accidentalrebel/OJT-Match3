@@ -41,6 +41,7 @@ class CountdownTimer extends JKText
 		{
 			timer.stop();
 			trace("timer has ended");
+			Registry.game.gameOver();
 		}
 		
 		setTimerText();		
