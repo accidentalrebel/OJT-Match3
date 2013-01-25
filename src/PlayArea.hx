@@ -191,31 +191,34 @@ class PlayArea extends JK2DArray
 	public function clearMarked()
 	{
 		isClearing = true;										// We have started clearing
-		tilesForClearing.reverse();
+		colClearingCount = [0,0,0,0,0,0,0,0];					// We clear the col count just in case
+		tilesForClearing.reverse();								// We revese the tiles to be cleared, so that the bottom tiles are processed first		
 		
-		colClearingCount = [0,0,0,0,0,0,0,0];
+		// We loop through all the tiles marked for clearing
 		for ( tile in tilesForClearing )
 		{			
 			if ( tile.residentJewel != null )
 			{	
-				tile.residentJewel.clear();
-				
-				colClearingCount[tile.xCoord] += 1;
-				Lib.trace("col " + tile.xCoord + " = " + colClearingCount[tile.xCoord]);
+				tile.residentJewel.clear();						// We clear each tile
+				colClearingCount[tile.xCoord] += 1;				// We then take into account the number of cleared tiles per column
 			}
 		}
 		
+		// We then loop through each columns to spawn jewels according to the number of clearedTiles
 		for ( i in 0...arrayWidth )
-		{
-			Lib.trace("At column number " + i + " spawning " + colClearingCount[i] );
+		{			
 			colSpawners[i].spawnJewels(colClearingCount[i]);
 		}
 		
-		colClearingCount = [0,0,0,0,0,0,0,0];		
+		colClearingCount = [0,0,0,0,0,0,0,0];					// We clear the col count for next time	
 		isClearing = false;										// We have finished clearing
 		tilesForClearing = [];									// We clear the tiles
 	}
 	
+	/**
+	 * Sets the tile for clearing by adding it to the tilesForClearing array
+	 * @param	thisTile
+	 */
 	public function setForClearing( thisTile : Tile)
 	{
 		tilesForClearing.push(thisTile);
