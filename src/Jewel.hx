@@ -145,7 +145,7 @@ class Jewel extends JKButton
 	}
 	
 	function moveTo( coordinate : JKPoint )
-	{
+	{		
 		Registry.game.playArea.jewelsSimulating.push(this);
 		Registry.game.playArea.isSimulating = true;
 		

@@ -152,7 +152,7 @@ class PlayArea extends JK2DArray
 		{
 			for ( j in 0...arrayHeight )
 			{
-				var theTile : Tile = get(i, j);
+				var theTile : Dynamic = get(i, j);
 				theTile.reset();
 			}
 		}
