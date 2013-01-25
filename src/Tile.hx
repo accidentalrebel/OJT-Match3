@@ -75,8 +75,13 @@ class Tile extends JKSprite
 	
 	/********************************************************************************
 	 * MATCH CHECKING
-	 * ******************************************************************************/
-	public function checkForMatch(canClear : Bool = true) : Bool
+	 * ******************************************************************************/	
+	/**
+	 * Checks for a match
+	 * @param	canClear	If set to true, it sets the tiles for clearing
+	 * @return	true if there is a match, false if there is none
+	 */
+	 public function checkForMatch(canClear : Bool = true) : Bool
 	{
 		var isThereAMatch : Bool = false;
 		

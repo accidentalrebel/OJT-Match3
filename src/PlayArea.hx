@@ -196,19 +196,22 @@ class PlayArea extends JK2DArray
 	 * ******************************************************************************/	
 	 /**
 	  * Loops through the playArea array and checks for matches
+	  * @param	canClear	Whether tiles with matches is automatically cleared
+	  * @return	true if a match is found, false if there is none
 	  */
 	public function checkForMatches(canClear : Bool = true)  : Bool
 	{		
 		var isThereAMatch : Bool = false;
 		
+		// We loop through each member
 		for ( i in 0...arrayWidth )
 		{
 			for ( j in 0...arrayHeight )
 			{												
-				var theTile : Tile = get(i, arrayHeight - 1 - j);
-				if ( theTile.residentJewel != null && !theTile.residentJewel.isCleared)
+				var theTile : Tile = get(i, arrayHeight - 1 - j);							// We get the tile
+				if ( theTile.residentJewel != null && !theTile.residentJewel.isCleared)		// We make sure hat the jewel is available
 				{
-					if ( theTile.checkForMatch(canClear) )
+					if ( theTile.checkForMatch(canClear) )									// We check if there is a match
 					{
 						isThereAMatch = true;
 					}
@@ -216,8 +219,8 @@ class PlayArea extends JK2DArray
 			}
 		}
 		
-		clearMarked();
-		displayAllContent();
+		clearMarked();																		// We clear all that is marked
+		displayAllContent();																// For debugging : We display all content of the playArea
 		
 		return isThereAMatch;
 	}
