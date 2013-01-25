@@ -42,6 +42,7 @@ class PlayArea extends JK2DArray
 		getNeighbors();
 		populateWithJewels();		
 		displayAllContent();
+		checkForMatches();
 		
 		marker = new JKSprite("img/marker.png", layerBG);
 		marker.hide();		

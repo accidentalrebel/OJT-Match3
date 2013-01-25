@@ -11,12 +11,17 @@ import nme.Lib;
 class Game extends JKGame
 {	
 	public var playArea : PlayArea;
+	var guiArea : JKSprite;
+	var countdownTimer : CountdownTimer;
 	
 	public function new() 
 	{
 		Registry.game = this;
+		guiArea = new JKSprite();				
+		countdownTimer = new CountdownTimer(40, 20, guiArea);
 		
 		super();
+		
 		
 		playArea = new PlayArea();
 	}
