@@ -31,7 +31,7 @@ class Jewel extends JKButton
 	public var isCleared : Bool = false;
 	
 	public var parentTile : Tile;
-	var isMoving = false;	
+	public var isMoving = false;	
 	var movementSpeed : Float = 0.5;
 	var movementTimer : Timer;
 	
@@ -165,7 +165,7 @@ class Jewel extends JKButton
 		var tempX = x;
 		var tempY = y;		
 		
-		var tempTile : Tile = jewelToSwitchWith.parentTile;
+		var tempTile : Dynamic = jewelToSwitchWith.parentTile;
 		jewelToSwitchWith.parentTile = parentTile;
 		parentTile.residentJewel = jewelToSwitchWith;		
 		parentTile = tempTile;

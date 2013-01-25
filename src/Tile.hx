@@ -85,6 +85,9 @@ class Tile extends JKSprite
 	{
 		var isThereAMatch : Bool = false;
 		
+		if ( residentJewel.isMoving )
+			return false;
+		
 		// We check vertically ( going to the top )
 		if ( topNeighbor != null && topNeighbor.residentJewel != null )
 		{
