@@ -15,8 +15,7 @@ class Game extends JKGame
 	public var isGameOver : Bool = false;	
 	var countdownTimer : CountdownTimer;
 	var guiArea : JKSprite;	
-	var scoreView : ScoreIndicator;
-	var scoreCount : Int;	
+	public var scoreView : ScoreIndicator;
 	
 	public function new() 
 	{

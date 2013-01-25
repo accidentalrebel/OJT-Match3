@@ -232,6 +232,7 @@ class PlayArea extends JK2DArray
 			{	
 				tile.residentJewel.clear();						// We clear each tile
 				colClearingCount[tile.xCoord] += 1;				// We then take into account the number of cleared tiles per column
+				Registry.game.scoreView.increaseScore();
 			}
 		}
 		
