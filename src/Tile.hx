@@ -78,7 +78,7 @@ class Tile extends JKSprite
 	 * ******************************************************************************/
 	public function checkForMatch()
 	{
-		// We check the top first
+		// We check vertically ( going to the top )
 		if ( topNeighbor != null && topNeighbor.residentJewel != null )
 		{
 			if ( topNeighbor.residentJewel.currentColor == residentJewel.currentColor )
@@ -89,6 +89,23 @@ class Tile extends JKSprite
 					{
 						Registry.game.playArea.setForClearing(topNeighbor.topNeighbor);
 						Registry.game.playArea.setForClearing(topNeighbor);
+						Registry.game.playArea.setForClearing(this);
+					}
+				}
+			}
+		}
+		
+		// We check horizontally ( going to the right )
+		if ( rightNeighbor != null && rightNeighbor.residentJewel != null )
+		{
+			if ( rightNeighbor.residentJewel.currentColor == residentJewel.currentColor )
+			{
+				if ( rightNeighbor.rightNeighbor != null && rightNeighbor.rightNeighbor.residentJewel != null )
+				{
+					if ( rightNeighbor.rightNeighbor.residentJewel.currentColor == residentJewel.currentColor )
+					{
+						Registry.game.playArea.setForClearing(rightNeighbor.rightNeighbor);
+						Registry.game.playArea.setForClearing(rightNeighbor);
 						Registry.game.playArea.setForClearing(this);
 					}
 				}

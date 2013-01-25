@@ -163,18 +163,19 @@ class PlayArea extends JK2DArray
 	/********************************************************************************
 	 * MATCH CHECKING
 	 * ******************************************************************************/
-	public function checkForMatches()
+	
+	 /**
+	  * Loops through the playArea array and checks for matches
+	  */
+	 public function checkForMatches()
 	{		
 		for ( i in 0...arrayWidth )
 		{
 			for ( j in 0...arrayHeight )
-			{
-				Lib.trace("Checking for matches: " + i + ", " + (arrayHeight - 1- j));
+			{												
 				var theTile : Tile = get(i, arrayHeight - 1 - j);
 				if ( theTile.residentJewel != null && !theTile.residentJewel.isCleared)
 					theTile.checkForMatch();
-				
-				//clearMarked();				
 			}
 		}
 		
@@ -182,9 +183,12 @@ class PlayArea extends JK2DArray
 		displayAllContent();
 	}
 	
+	/**
+	 * Clears all the tiles with jewels that were marked for clearing
+	 */
 	public function clearMarked()
 	{
-		isClearing = true;
+		isClearing = true;										// We have started clearing
 		tilesForClearing.reverse();
 		for ( tile in tilesForClearing )
 		{			
@@ -193,16 +197,9 @@ class PlayArea extends JK2DArray
 				Lib.trace("Clearing: " + tile.objectName);
 				tile.residentJewel.clear();
 			}
-			//if ( jewel != null  && !jewel.isCleared )
-			//{
-				//var theParentTile = jewel.parentTile;			
-				//Lib.trace(theParentTile.objectName + " is cleared");
-				//jewel.clear();			
-			//}
 		}
-		isClearing = false;
-		
-		tilesForClearing = [];
+		isClearing = false;										// We have finished clearing
+		tilesForClearing = [];									// We clear the tiles
 	}
 	
 	public function setForClearing( thisTile : Tile)
