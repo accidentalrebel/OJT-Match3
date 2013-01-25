@@ -20,10 +20,10 @@ class Game extends JKGame
 		guiArea = new JKSprite();				
 		countdownTimer = new CountdownTimer(40, 20, guiArea);
 		
-		super();
-		
+		super();		
 		
 		playArea = new PlayArea();
+		countdownTimer.startCountdown();
 	}
 	
 	override private function update(e:Event):Void 
