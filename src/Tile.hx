@@ -139,6 +139,7 @@ class Tile extends JKSprite
 		{
 			residentJewel.clear();
 			residentJewel = null;
+			spawnResident();
 		}
 	}
 }

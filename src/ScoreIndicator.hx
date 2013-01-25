@@ -26,4 +26,10 @@ class ScoreIndicator extends JKText
 		currentScore++;
 		setScore();
 	}	
+	
+	public function reset()
+	{
+		currentScore = 0;
+		setScore();
+	}
 }

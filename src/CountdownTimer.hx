@@ -64,4 +64,11 @@ class CountdownTimer extends JKText
 			
 		setText(minutesText + ":" + secondsText);
 	}
+	
+	public function reset()
+	{
+		seconds = 0;
+		minutes = 2;
+		setTimerText();
+	}
 }

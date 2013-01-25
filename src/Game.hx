@@ -32,17 +32,15 @@ class Game extends JKGame
 	
 	override private function update(e:Event):Void 
 	{
-		super.update(e);
-		
-		if ( keyboard.checkIfKeyPressed(65) )
-		{
-			playArea.displayAllContent();
-		}
-		
-		if ( isGameOver && keyboard.checkIfKeyPressed(65) )
-		{
-			trace("is restarting");
+		super.update(e);		
+	
+		if ( keyboard.checkIfKeyPressed(82) && !playArea.isSimulating)
+		{			
 			playArea.resetBoard();
+			playArea.populate();
+			countdownTimer.reset();
+			scoreView.reset();
+			isGameOver = false;
 		}
 	}
 	
