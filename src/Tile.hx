@@ -129,4 +129,16 @@ class Tile extends JKSprite
 		
 		return isThereAMatch;
 	}
+	
+	/********************************************************************************
+	 * DESTROY / RESET
+	 * ******************************************************************************/	
+	public function reset()
+	{
+		if ( residentJewel != null )
+		{
+			residentJewel.clear();
+			residentJewel = null;
+		}
+	}
 }

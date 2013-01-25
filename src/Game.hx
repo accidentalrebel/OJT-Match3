@@ -12,7 +12,7 @@ import nme.Lib;
 class Game extends JKGame
 {	
 	public var playArea : PlayArea;	
-	public var isGameOver : Bool = false;	
+	public var isGameOver : Bool = true;	
 	var countdownTimer : CountdownTimer;
 	var guiArea : JKSprite;	
 	public var scoreView : ScoreIndicator;
@@ -37,6 +37,12 @@ class Game extends JKGame
 		if ( keyboard.checkIfKeyPressed(65) )
 		{
 			playArea.displayAllContent();
+		}
+		
+		if ( isGameOver && keyboard.checkIfKeyPressed(65) )
+		{
+			trace("is restarting");
+			playArea.resetBoard();
 		}
 	}
 	

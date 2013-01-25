@@ -11,8 +11,8 @@ import nme.utils.Timer;
 class CountdownTimer extends JKText
 {	
 	var timer : Timer;
-	var minutes : Float = 5;			// 5 minutes
-	var seconds : Float = 0;			// 0 seconds
+	var minutes : Float = 2;			
+	var seconds : Float = 0;			
 	
 	public function new( xPos : Float = 0, yPos : Float = 0, ?layer : DisplayObjectContainer ) 
 	{		

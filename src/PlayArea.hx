@@ -146,6 +146,18 @@ class PlayArea extends JK2DArray
 		Lib.trace(toDisplay);						// We display the generated string
 	}
 	
+	public function resetBoard()
+	{
+		for ( i in 0...arrayWidth )
+		{
+			for ( j in 0...arrayHeight )
+			{
+				var theTile : Tile = get(i, j);
+				theTile.reset();
+			}
+		}
+	}
+	
 	/********************************************************************************
 	 * TILE SELECTION
 	 * ******************************************************************************/
