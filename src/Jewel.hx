@@ -161,13 +161,9 @@ class Jewel extends JKButton
 	}
 	
 	public function switchWith( jewelToSwitchWith : Jewel )
-	{
+	{		
 		var tempX = x;
-		var tempY = y;
-		Actuate.tween(this, movementSpeed, { x : jewelToSwitchWith.x, y : jewelToSwitchWith.y } );		// We tween to position		
-		Actuate.tween(jewelToSwitchWith, movementSpeed, { x : tempX, y : tempY } );						// We tween to position		
-		
-		movementTimer.start();
+		var tempY = y;		
 		
 		var tempTile : Tile = jewelToSwitchWith.parentTile;
 		jewelToSwitchWith.parentTile = parentTile;
@@ -177,6 +173,22 @@ class Jewel extends JKButton
 		
 		this.updateMapPosition();
 		jewelToSwitchWith.updateMapPosition();
+		
+		
+		if ( Registry.game.playArea.checkForMatches(false) )
+		{					
+			movementTimer.start();
+			Actuate.tween(this, movementSpeed, { x : jewelToSwitchWith.x, y : jewelToSwitchWith.y }, true);		// We tween to position		
+			Actuate.tween(jewelToSwitchWith, movementSpeed, { x : tempX, y : tempY }, true );						// We tween to position		
+		}
+		else	// Not a valid move
+		{
+			tempTile = jewelToSwitchWith.parentTile;
+			jewelToSwitchWith.parentTile = parentTile;
+			parentTile.residentJewel = jewelToSwitchWith;		
+			parentTile = tempTile;
+			parentTile.residentJewel = this;
+		}
 	}
 	
 	function updateMapPosition()

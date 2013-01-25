@@ -174,12 +174,18 @@ class PlayArea extends JK2DArray
 					|| clickedTile == selectedTile.rightNeighbor 
 					|| clickedTile == selectedTile.bottomNeighbor 
 					|| clickedTile == selectedTile.leftNeighbor )	// If this tile is left neighbor
-					{						
-						clickedTile.residentJewel.switchWith(selectedTile.residentJewel);						
-						marker.hide();
-						selectedTile = null;
+					{	
+						clickedTile.residentJewel.switchWith(selectedTile.residentJewel);
+						
+						//if ( !checkForMatches() )
+						//{
+							//clickedTile.residentJewel.switchWith(selectedTile.residentJewel);
+						//}
+						
 						checkForMatches();
-						isSimulating =  true;
+						marker.hide();		
+						selectedTile = null;
+						isSimulating = true;
 					}			
 			}
 		}
@@ -191,7 +197,7 @@ class PlayArea extends JK2DArray
 	 /**
 	  * Loops through the playArea array and checks for matches
 	  */
-	public function checkForMatches() : Bool
+	public function checkForMatches(canClear : Bool = true)  : Bool
 	{		
 		var isThereAMatch : Bool = false;
 		
@@ -202,7 +208,7 @@ class PlayArea extends JK2DArray
 				var theTile : Tile = get(i, arrayHeight - 1 - j);
 				if ( theTile.residentJewel != null && !theTile.residentJewel.isCleared)
 				{
-					if ( theTile.checkForMatch() )
+					if ( theTile.checkForMatch(canClear) )
 					{
 						isThereAMatch = true;
 					}

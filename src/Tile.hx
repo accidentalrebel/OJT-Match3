@@ -76,7 +76,7 @@ class Tile extends JKSprite
 	/********************************************************************************
 	 * MATCH CHECKING
 	 * ******************************************************************************/
-	public function checkForMatch() : Bool
+	public function checkForMatch(canClear : Bool = true) : Bool
 	{
 		var isThereAMatch : Bool = false;
 		
@@ -89,9 +89,12 @@ class Tile extends JKSprite
 				{
 					if ( topNeighbor.topNeighbor.residentJewel.currentColor == residentJewel.currentColor )
 					{
-						Registry.game.playArea.setForClearing(topNeighbor.topNeighbor);
-						Registry.game.playArea.setForClearing(topNeighbor);
-						Registry.game.playArea.setForClearing(this);
+						if ( canClear )
+						{
+							Registry.game.playArea.setForClearing(topNeighbor.topNeighbor);
+							Registry.game.playArea.setForClearing(topNeighbor);
+							Registry.game.playArea.setForClearing(this);
+						}
 						isThereAMatch = true;
 					}
 				}
@@ -107,9 +110,12 @@ class Tile extends JKSprite
 				{
 					if ( rightNeighbor.rightNeighbor.residentJewel.currentColor == residentJewel.currentColor )
 					{
-						Registry.game.playArea.setForClearing(rightNeighbor.rightNeighbor);
-						Registry.game.playArea.setForClearing(rightNeighbor);
-						Registry.game.playArea.setForClearing(this);
+						if ( canClear )
+						{
+							Registry.game.playArea.setForClearing(rightNeighbor.rightNeighbor);
+							Registry.game.playArea.setForClearing(rightNeighbor);
+							Registry.game.playArea.setForClearing(this);
+						}
 						isThereAMatch = true;
 					}
 				}
